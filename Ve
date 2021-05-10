@@ -1,0 +1,23 @@
+package com.example;
+
+import java.util.Scanner;
+import java.util.Vector;
+
+
+public static void main(String[] args) {
+        Vector<Integer> vec = new Vector<Integer>();
+        Scanner scanner = new Scanner(System.in);
+        int liczba;
+        for (int i = 0; i < 10; i++) {
+            System.out.print("podaj liczbe calkowita");
+            liczba = scanner.nextInt();
+            vec.add(liczba);
+
+        }
+
+        for (int o : vec) {
+            System.out.println(o);
+        }
+
+    }
+}
