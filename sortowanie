@@ -1,0 +1,32 @@
+public final class App {
+
+    public static void main(String[] args) {
+        int[] elements = { 2, 6, 4, 1 }; //predefiniowana lista elementow do posortowania 
+        int numberOfElements = elements.length - 1; 
+
+        //w sortowaniu bablekowym petla dziala tak dlugo az wykryje brak operacji sortowania 
+        while (true) {
+            // wewnetrzna zmienna do obserwacji sortowan w 1 przebiegu babelkowania
+            boolean unchanged = true
+            //standardowe podejscie w sortowaniua babelkowym 
+            // polegajacy na zamiane sasdnich elementow jesli sa w zlej kolejnosci
+            for (int i = 0; i < numberOfElements; i++) {
+                int i1 = elements[i];
+                int i2 = elements[i + 1];
+                if (i1 > i2) {
+                    unchanged = false;
+                    elements[i] = i2;
+                    elements[i + 1] = i1;
+                }
+            }
+            // w sortowaniu babelkowym brak jakiejkolwiek zmiany oznacza zakonczenie  operacji sortowania
+            if (unchanged)
+                break;
+        }
+
+//wyswietlenie wynikow
+        for (int x : elements) {
+            System.out.println(x);
+        }
+    }
+}
