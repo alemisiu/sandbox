@@ -3,17 +3,18 @@ package com.example;
 import java.util.Scanner;
 import java.util.Vector;
 
-
 public static void main(String[] args) {
-        Vector<Integer> vec = new Vector<Integer>();
-        Scanner scanner = new Scanner(System.in);
-        int liczba;
+        Vector<Integer> vec = new Vector<Integer>();// jest miejscem na liczby użytkownika
+        Scanner scanner = new Scanner(System.in);//standardowy obiekt uzywany do wczytywania uzytkownika z klawiatury
+        
+        // wczytuje 10 liczb od uzytkownika  i zapisuje je w vec
         for (int i = 0; i < 10; i++) {
             System.out.print("podaj liczbe calkowita");
-            liczba = scanner.nextInt();
+            int liczba = scanner.nextInt();
             vec.add(liczba);
 
         }
+
 
         for (int o : vec) {
             System.out.println(o);
