@@ -1,0 +1,29 @@
+public class Program {
+  public static void main(String[] args) {
+
+    // przykladowa tablica z dany do przetestowanai algorytmu sortowania
+    int[] arr = { 10, 500, -1, 2, 13 };
+    int numberOfElements = arr.length;
+
+    // zewnetrzna petla sortowania
+    for (int i = 0; i < numberOfElements - 1; i++) {
+
+      // wewnetrzna petla sortujaca  z ewentualna  zamiana elementow jesli wymagane 
+      int minValue = arr[i];
+      for (int j = i + 1; j < numberOfElements; j++) {
+        if (arr[j] < minValue) {
+          minValue = arr[j];
+          arr[j] = arr[i];
+          arr[i] = minValue;
+
+        }
+      }
+
+    }
+
+    // podglad posortowanego wyniku
+    for (int it : arr) {
+      System.out.println(it);
+    }
+  }
+}
