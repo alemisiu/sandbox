@@ -1,0 +1,39 @@
+// https://pl.wikipedia.org/wiki/Sortowanie_przez_wstawianie
+public class Project9 {
+
+  public static void main(String[] args) {
+    // zrodlowa nie uporzadkowana tablica oraz docelowa tablica gdzie ma sie znalezc
+    int[] unsorted = { 10, 500, -1, 2, 13 };
+    int[] sorted = new int[unsorted.length];
+
+    // w ponizszym kodzie 0 element przyjmujemy jako posortowany  a reszte bedziemy dodawac algorytmicznie
+    sorted[0] = unsorted[0];
+
+    // petla pozwalajaca przejrzec wszystkie wartosci unsorted pomijajac 0 przelozony juz element
+    for (int i = 1; i < unsorted.length; i++) {
+
+      //pobieramy kandydata current i w  ponizszej petli wstawiamy w posortowane miejsce 
+      int current = unsorted[i];
+      // przegldamy kandydatow od konca (najwiekszej wartosci)
+      for (int j = i; j >= 0; j--) {
+
+        //wstawiamy do posortowanej listy jesli jest to wlasciwe miejsce lub idziemy ku innym indeksom
+        if (j == 0) {
+          sorted[0] = current;
+          break;
+        }
+        if (sorted[j - 1] < current) {
+          sorted[j] = current;
+          break;
+        }
+
+        sorted[j] = sorted[j - 1];
+
+      }
+    }
+    //
+    for (int i : sorted) {
+      System.out.println(i);
+    }
+  }
+}
