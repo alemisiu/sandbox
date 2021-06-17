@@ -73,6 +73,9 @@ int main(void)
     {
     case 1:
       break;
+    case 2:
+      cout << "Ilość pacjentów w bazie wynosi :" << indexOfPerson << endl;
+      break;
     case 9:
       return 0;
     default:
