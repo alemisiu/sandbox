@@ -1,0 +1,74 @@
+//lista i dodac do niej 3 losowe elementy od wartosci od 0 do 100 wyswietl na ekran i usun 1
+
+//Zadanie 6 Sortowanie z wektorem pomocniczym
+//
+//        Słowny opis algorytmu:
+//        1. Patrzymy na 1 liczbę i porównujemy ją z drugą
+//        2. Jeżeli pierwsza jest mniejsza od drugiej – porównujemy ją z trzecią
+//        3. Jeżeli druga jest mniejsza – ‘zapominamy’ o pierwszej i porównujemy drugą z trzecia
+//        4. Powtarzamy punkty 2 i 3 dla kolejnych liczb aż dojdziemy do końca wektora – wtedy mamy ‘w pamięci’ najmniejszą liczbę
+//        5. Zapisujemy ją na początku nowego wektora
+//        6. Zaznaczamy w wektorze wejściowym, że już ją przepisaliśmy (np. skreślając ją lub stawiając przy niej ‘ptaszek’)
+//        7. Wracamy do punktu 1, biorąc pod uwagę pierwszą jeszcze nie przepisaną liczbę
+//        8. Powtarzamy cały proces aż do przepisania w kolejności rosnącej wszystkich elementów
+//
+//        Wskazówka
+//        Problemem jest zaznaczanie już znalezionych najmniejszych elementów – trzeba znaleźć jakiś odpowiednik stawiania ‘ptaszka’ na kartce.
+//        Pierwsze narzucające się rozwiązanie to zastosowanie dodatkowego (trzeciego) wektora o wartościach logicznych.
+package net.siudek;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Program {
+
+    public static void main(String[] args) {
+
+        //przykladowa lista z nie posortowanymi wartosciami mozna je zasilic z klawiatury 
+        List<Integer> elements = new ArrayList<>();
+        elements.add(2);
+        elements.add(7);
+        elements.add(1);
+        elements.add(8);
+        elements.add(5);
+        elements.add(5);
+        
+        // lista na posortowane wyniki koncowe
+        List<Integer> result = new ArrayList<>();
+
+         // bedziemy przenosic elementy w petli ponizej tak dlugo poki elements jest nie pusta
+        while (true) {
+            
+            //pusta lista zrodlowa oznacza ze dane sa posortowane zakoncz prace 
+            if (elements.isEmpty()) {
+                break;
+            }
+            
+            //szukamy  najmniejszej wartosci oraz jej wartosci w tablicy nie posortowanej
+            int indexOfMinimumValue = 0;
+            int minimumvalue = elements.get(0);
+            for (int i = 0; i < elements.size(); i++) {
+                int x = elements.get(i);
+                if (x < minimumvalue) {
+                    indexOfMinimumValue = i;
+                    minimumvalue = x;
+                }
+            }
+
+            //przenosi minimalnego kandydata do zbioru liczb posortowanych 
+            elements.remove(indexOfMinimumValue);
+            result.add(minimumvalue);
+        }
+        
+        //wyswietlenie listy posortowanej wynikow 
+        for (int arrayElem : result) {
+            System.out.println(arrayElem + " ");
+        }
+        System.out.println("Rozmiar listy to: " + elements.size());
+
+
+       
+
+
+    }
+}
