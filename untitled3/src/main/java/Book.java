@@ -16,6 +16,9 @@ class Book {
         isbn = bookIsbn;
     }
 
+    /**
+     * Displays on the console readable info about the book in human-readable format.
+     */
     void printInfo() {
         String info = title + "; " + author + "; " + releaseDate + "; "
                 + pages + "; " + publisher + "; " + isbn;
