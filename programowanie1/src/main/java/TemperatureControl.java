@@ -1,13 +1,20 @@
 import java.util.Scanner;
-public class TemperatureControl {
+
+class TemperatureControl {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("podaj temperature aktulana:");
+        System.out.println("Podaj temperaturę aktualną:");
         double currentTemperature = input.nextInt();
-        System.out.println("podaj temperature docelowa:");
+        System.out.println("Podaj temperaturę docelową:");
         int targetTemperature = input.nextInt();
 
-        while (currentTemperature !=)
+        Thermostat thermostat = new Thermostat(currentTemperature, targetTemperature);
+        while (!thermostat.targetTemperatureReached()) {
+            System.out.println("Aktualna temperatura: " + thermostat.getCurrentTemperature());
+            thermostat.adjustTemperature();
+        }
+
+        System.out.println("Osiągnięto temperaturę docelową " + thermostat.getCurrentTemperature() + " stopni");
     }
 }

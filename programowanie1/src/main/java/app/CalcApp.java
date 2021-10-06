@@ -1,11 +1,9 @@
 package app;
 
-import.java.util.locale;
-import.java.util.scanner;
-
 import calc.Calculator;
 
 import java.util.Locale;
+import java.util.Scanner;
 
 public class CalcApp {
     public static void main(String[] args) {

@@ -2,14 +2,14 @@ import java.util.Scanner;
 
 public class HospitalApp {
     public static void main(String[] args) {
-        final int exit =0;
-        final int addPatient =1;
-        final int printPatients =2;
+        final int exit = 0;
+        final int addPatient = 1;
+        final int printPatients = 2;
         Scanner input = new Scanner(System.in);
-        int option =-1;
+        int option = -1;
         Hospital hospital = new Hospital();
 
-        while(option!=exit){
+        while (option != exit) {
             System.out.println("Dostępne opcje: ");
             System.out.println("0 - wyjście z programu");
             System.out.println("1 - dodanie pacjenta");
@@ -19,8 +19,8 @@ public class HospitalApp {
             option = input.nextInt();
             input.nextLine();
 
-            switch(option){
-                case addPatient;
+            switch (option) {
+                case addPatient:
                     Patient patient = new Patient();
                     System.out.println("Imię: ");
                     patient.setFirstName(input.nextLine());
@@ -30,14 +30,12 @@ public class HospitalApp {
                     patient.setPesel(input.nextLine());
                     hospital.addPatient(patient);
                     break;
-                    case  printPatients;
+                case printPatients:
                     hospital.printPatients();
-            break;
+                    break;
                 case exit:
                     System.out.println("zamykam program!");
                     break;
-                    deafault:
-                System.out.println("nie znaleziono takiej opcji");
             }
         }
 
