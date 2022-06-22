@@ -16,33 +16,38 @@ class UserService {
     }
 
 
-    List<UserDto> findAll() {
-        return userRepository.findAll()
-                .stream()
-                .map(UserMapper::toDto)
-                .collect(Collectors.toList());
-
+    Optional<UserDto> findById(Long id) {
+        return userRepository.findById(id).map(UserMapper::toDto);
     }
 
-    UserDto save(UserDto userDbo) {
-        Optional<UserDbo> userByPesel = userRepository.findByPesel(userDbo.getPesel());
+
+    UserDto save(UserDto user) {
+        Optional<UserDbo> userByPesel = userRepository.findByPesel(user.getPesel());
         userByPesel.ifPresent(u -> {
-            try {
-                throw new DuplicatePeselException();
-            } catch (DuplicatePeselException e) {
-                throw new RuntimeException(e);
-            }
+            throw new DuplicatePeselException();
         });
-        UserDbo userEntity = UserMapper.toEntity(userDbo);
+        UserDbo userEntity = UserMapper.toEntity(user);
         UserDbo savedUser = userRepository.save(userEntity);
         return UserMapper.toDto(savedUser);
-        }
-    public List<UserDto> findByLastName(String lastName) {
-        return userRepository.findAllByLastNameContainingIgnoreCase(lastName)
-                .stream()
-                .map(UserMapper::toDto)
-                .collect(Collectors.toList());
     }
+
+    UserDto update(UserDto user) {
+        Optional<UserDbo> userByPesel = userRepository.findByPesel(user.getPesel());
+        userByPesel.ifPresent(u -> {
+            if(!u.getId().equals(user.getId()))
+                throw new DuplicatePeselException();
+        });
+        return mapAndSaveUser(user);
+    }
+
+    private UserDto mapAndSaveUser(UserDto user) {
+        UserDbo userEntity = UserMapper.toEntity(user);
+        UserDbo savedUser = userRepository.save(userEntity);
+        return UserMapper.toDto(savedUser);
+    }
+
+
+
 }
 
 
