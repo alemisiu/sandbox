@@ -1,11 +1,15 @@
-package pl.javastart.equipy.components.user;
+package pl.javastart.equipy.components.user.inventory.user;
+
+import pl.javastart.equipy.components.user.assignment.Assignment;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "UserData")
-public class UserDbo {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,6 +17,9 @@ public class UserDbo {
     private String lastName;
     @Column(unique = true)
     private String pesel;
+
+    @OneToMany(mappedBy = "user")
+    private List<Assignment> assignments = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -46,11 +53,19 @@ public class UserDbo {
         this.pesel = pesel;
     }
 
+    public List<Assignment> getAssignments() {
+        return assignments;
+    }
+
+    public void setAssignments(List<Assignment> assignments) {
+        this.assignments = assignments;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserDbo userDbo = (UserDbo) o;
+        User userDbo = (User) o;
         return Objects.equals(id, userDbo.id) &&
                 Objects.equals(firstName, userDbo.firstName) &&
                 Objects.equals(lastName, userDbo.lastName) &&

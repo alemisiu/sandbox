@@ -1,4 +1,4 @@
-package pl.javastart.equipy.components.user;
+package pl.javastart.equipy.components.user.inventory.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,5 +46,10 @@ class UserResource {
         UserDto updatedUser = userService.update(user);
         return ResponseEntity.ok(updatedUser);
     }
+    @GetMapping("/{id}/assignments")
+    public List<UserAssignmentDto> getUserAssignments(@PathVariable Long id) {
+        return userService.getUserAssignments(id);
+    }
+
 
 }

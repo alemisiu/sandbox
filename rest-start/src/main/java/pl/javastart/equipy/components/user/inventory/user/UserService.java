@@ -1,6 +1,7 @@
-package pl.javastart.equipy.components.user;
+package pl.javastart.equipy.components.user.inventory.user;
 
 import org.springframework.stereotype.Service;
+import pl.javastart.equipy.components.user.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,17 +23,17 @@ class UserService {
 
 
     UserDto save(UserDto user) {
-        Optional<UserDbo> userByPesel = userRepository.findByPesel(user.getPesel());
+        Optional<User> userByPesel = userRepository.findByPesel(user.getPesel());
         userByPesel.ifPresent(u -> {
             throw new DuplicatePeselException();
         });
-        UserDbo userEntity = UserMapper.toEntity(user);
-        UserDbo savedUser = userRepository.save(userEntity);
+        User userEntity = UserMapper.toEntity(user);
+        User savedUser = userRepository.save(userEntity);
         return UserMapper.toDto(savedUser);
     }
 
     UserDto update(UserDto user) {
-        Optional<UserDbo> userByPesel = userRepository.findByPesel(user.getPesel());
+        Optional<User> userByPesel = userRepository.findByPesel(user.getPesel());
         userByPesel.ifPresent(u -> {
             if(!u.getId().equals(user.getId()))
                 throw new DuplicatePeselException();
@@ -41,13 +42,20 @@ class UserService {
     }
 
     private UserDto mapAndSaveUser(UserDto user) {
-        UserDbo userEntity = UserMapper.toEntity(user);
-        UserDbo savedUser = userRepository.save(userEntity);
+        User userEntity = UserMapper.toEntity(user);
+        User savedUser = userRepository.save(userEntity);
         return UserMapper.toDto(savedUser);
     }
 
 
-
+    List<UserAssignmentDto> getUserAssignments(Long userId) {
+        return userRepository.findById(userId)
+                .map(User::getAssignments)
+                .orElseThrow(UserNotFoundException::new)
+                .stream()
+                .map(UserAssignmentMapper::toDto)
+                .collect(Collectors.toList());
+    }
 }
 
 

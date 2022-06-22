@@ -1,6 +1,6 @@
-package pl.javastart.equipy.components.user;
+package pl.javastart.equipy.components.user.inventory.user;
 
-class UserDto {
+public class UserDto {
     private Long id;
     private String firstName;
     private String lastName;

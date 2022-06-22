@@ -1,8 +1,8 @@
-package pl.javastart.equipy.components.user;
+package pl.javastart.equipy.components.user.inventory.user;
 
-class UserMapper {
+public class UserMapper {
 
-    static UserDto toDto(UserDbo userDbo) {
+    public static UserDto toDto(User userDbo) {
         UserDto dto = new UserDto();
         dto.setId(userDbo.getId());
         dto.setFirstName(userDbo.getFirstName());
@@ -11,8 +11,8 @@ class UserMapper {
         return dto;
     }
 
-    static UserDbo toEntity(UserDto user) {
-        UserDbo entity = new UserDbo();
+    public static User toEntity(UserDto user) {
+        User entity = new User();
         entity.setId(user.getId());
         entity.setFirstName(user.getFirstName());
         entity.setLastName(user.getLastName());
